@@ -59,7 +59,7 @@ export class theatreService {
    ************************************************************************/
   deleteTheatres(theatreId: number): Observable<any> {
     return this.http.delete(
-      "http://localhost:8085/theatre/delete/" + theatreId,
+      "http://localhost:8085/theatre/deletetheatre/" + theatreId,
       {
         responseType: "text",
       }
@@ -76,7 +76,7 @@ export class theatreService {
    ************************************************************************/
   insertTheatres(theatre: Theatre): Observable<any> {
     return this.http.post(
-      "http://localhost:8085/theatre/theatredetails",
+      "http://localhost:8085/theatre/addtheatredetails",
       theatre,
       {
         responseType: "text",
@@ -94,7 +94,7 @@ export class theatreService {
    ************************************************************************/
   updateTheatre(theatre: Theatre): Observable<any> {
     let end = theatre.theatreId;
-    const url = "http://localhost:8085/theatre/update/" + end;
+    const url = "http://localhost:8085/theatre/updatetheatre/" + end;
     console.log(url);
     return this.http.put(url, theatre);
   }
