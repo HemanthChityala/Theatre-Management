@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Theatre } from "../theatre";
 import { theatreService } from "../theatre.service";
-import { ThrowStmt } from "@angular/compiler";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -12,11 +11,11 @@ import { NgForm } from "@angular/forms";
 export class ViewtheatreComponent implements OnInit {
   @ViewChild("#frm")
   form: NgForm;
-  message:any;
-  successFlag=false;
-  errorFlag=false;
+  message: any;
+  successFlag = false;
+  errorFlag = false;
   /**************************************************************************
-   * creating theatress array of Theatre type to store the theatre detail 
+   * creating theatres array of Theatre type to store the theatre detail 
   /**************************************************************************/
   theatres: Theatre[] = [];
 
@@ -33,8 +32,6 @@ export class ViewtheatreComponent implements OnInit {
 
   /*********************************************************************
    * Method: ngOnInit is life cycle hook called by angular at first
-   * params:
-   * return:
    * Description: ngOnInit first check the falg value if it is true then check
    *              and loads all the theatre in the starting and it is
    *              checking if theatre array length is zero then load theatre
@@ -45,20 +42,18 @@ export class ViewtheatreComponent implements OnInit {
    ************************************************************************/
   ngOnInit() {
     console.log("inside ngOninit viewtheatre component");
-    this.theatreService.loadTheatres().subscribe((data) => {
-      this.theatres = data;
-      this.theatreService.setTheatres(this.theatres);
-      this.errorFlag=false;
-      this.successFlag=true;
-     } ,
-(error) => {
-  this.message=error.error;
-  this.successFlag=false;
-  this.errorFlag=true;
-}
-
-
-     
+    this.theatreService.loadTheatres().subscribe(
+      (data) => {
+        this.theatres = data;
+        this.theatreService.setTheatres(this.theatres);
+        this.errorFlag = false;
+        this.successFlag = true;
+      },
+      (error) => {
+        this.message = error.error;
+        this.successFlag = false;
+        this.errorFlag = true;
+      }
     );
   }
 
@@ -82,7 +77,6 @@ export class ViewtheatreComponent implements OnInit {
   /*********************************************************************
    * Method: updateTheatre
    * params: theatreId
-   * return:
    * Description: this method is updating the theatre after deleting a row
    *
    * Created Date: 28 Apr 2020
@@ -100,7 +94,6 @@ export class ViewtheatreComponent implements OnInit {
   }
   /*********************************************************************
    * Method: editTheatre
-   * params:
    * return: void
    * Description: this method is just checking the flag value for enable the
    *              form

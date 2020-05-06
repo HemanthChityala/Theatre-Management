@@ -35,8 +35,6 @@ export class addtheatreComponent implements OnInit {
   ngOnInit(): void {}
   /********************************************************************************
    * Method: addtheatre
-   * params:
-   * return:
    * Description: this method call service addtheatres method and add theatres every time
    *              and routes the page to display all theatre detail after adding
    * Created Date: 26 APR 2020
@@ -51,10 +49,6 @@ export class addtheatreComponent implements OnInit {
         console.log(this.theatre);
         this.info = data;
         this.errorInfo = undefined;
-        // this.theatreService.loadTheatres().subscribe((data) => {
-        //   console.log(data);
-
-        //     });
       },
       (error) => {
         this.info = undefined;
