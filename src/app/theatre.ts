@@ -3,5 +3,5 @@ export class Theatre {
   theatreName: string;
   theatreCity: String;
   managerName: string;
-  managerContact: String;
+  managerContact: number;
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Theatre } from "../theatre";
 import { theatreService } from "../theatre.service";
 import { ThrowStmt } from "@angular/compiler";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-viewtheatre",
@@ -9,6 +10,11 @@ import { ThrowStmt } from "@angular/compiler";
   styleUrls: ["./viewtheatre.component.css"],
 })
 export class ViewtheatreComponent implements OnInit {
+  @ViewChild("#frm")
+  form: NgForm;
+  message:any;
+  successFlag=false;
+  errorFlag=false;
   /**************************************************************************
    * creating theatress array of Theatre type to store the theatre detail 
   /**************************************************************************/
@@ -42,7 +48,18 @@ export class ViewtheatreComponent implements OnInit {
     this.theatreService.loadTheatres().subscribe((data) => {
       this.theatres = data;
       this.theatreService.setTheatres(this.theatres);
-    });
+      this.errorFlag=false;
+      this.successFlag=true;
+     } ,
+(error) => {
+  this.message=error.error;
+  this.successFlag=false;
+  this.errorFlag=true;
+}
+
+
+     
+    );
   }
 
   /*********************************************************************
@@ -92,7 +109,6 @@ export class ViewtheatreComponent implements OnInit {
    * Author: Hemanth Reddy
    ************************************************************************/
   editTheatre(): void {
-    //this.theatreService.updateTheatre(this.theatre).subscribe(data=>{console.log(data)});
     this.theatreService.updateTheatre(this.theatre).subscribe((data) => {
       console.log(data);
     });

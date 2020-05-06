@@ -1,6 +1,18 @@
 <section class="col-md-10 mx-auto mt-4">
-  <form #frm="ngForm" (ngSubmit)="addTheatre()">
+  <div class="alert alert-success" *ngIf="info != undefined">{{ info }}</div>
+  <div class="alert alert-danger" *ngIf="errorInfo != undefined">
+    {{ errorInfo }}
+  </div>
 
+  <form #frm="ngForm" (ngSubmit)="addTheatre()">
+    <div>
+      <h1
+        class="text-left-align text-dark font-weight-bold"
+        style="margin-left: 22%;"
+      >
+        ADD THEATRE
+      </h1>
+    </div>
     <!--
     <div class="mt-4">Theatre ID</div>
     <div>
@@ -24,8 +36,10 @@
     <div>
       <input
         type="text"
-        name="txttitle"
+        name="theatreName"
         [(ngModel)]="theatre.theatreName"
+        pattern="[A-Za-z ]*"
+        title="Theatre name should contain alphabets only"
         class="form-control"
         #theatreName="ngModel"
         required
@@ -35,7 +49,7 @@
       class="alert alert-dark mt-3"
       *ngIf="theatreName.invalid && (theatreName.touched || theatreName.dirty)"
     >
-      Theare name is required.
+      Theatre name is mandatory and should contain alphabets only.
     </div>
 
     <div class="mt-3">Theatre city</div>
@@ -44,6 +58,8 @@
         type="text"
         name="theatreCity"
         [(ngModel)]="theatre.theatreCity"
+        pattern="[A-Za-z ]*"
+        title="Theatre city should contain alphabets only"
         class="form-control"
         #theatreCity="ngModel"
         required
@@ -53,7 +69,7 @@
       class="alert alert-dark mt-3"
       *ngIf="theatreCity.invalid && (theatreCity.touched || theatreCity.dirty)"
     >
-      Theatre city is required
+      Theatre city is mandatory and should contain alphabets only
     </div>
 
     <div class="mt-3">Manager name</div>
@@ -62,6 +78,8 @@
         type="text"
         name="managerName"
         [(ngModel)]="theatre.managerName"
+        pattern="[A-Za-z ]*"
+        title="Manager name should contain alphabets only"
         class="form-control"
         #managerName="ngModel"
         required
@@ -71,7 +89,7 @@
       class="alert alert-dark mt-3"
       *ngIf="managerName.invalid && (managerName.touched || managerName.dirty)"
     >
-      Manager name is required
+      Manager name is mandatory and should contain alphabets only
     </div>
 
     <div class="mt-3">Manager contact</div>
@@ -81,6 +99,8 @@
         type="number"
         name="managerContact"
         [(ngModel)]="theatre.managerContact"
+        pattern="[0-9]{10}"
+        title="Manager contact should contain digits only and should not exceed 10 digits"
         class="form-control"
         #managerContact="ngModel"
         required
@@ -93,7 +113,8 @@
         (managerContact.touched || managerContact.dirty)
       "
     >
-      Manager Contact is required.
+      Manager contact is mandatory and should contain digits only and should not
+      exceed 10 digits
     </div>
 
     <div class="mt-3">

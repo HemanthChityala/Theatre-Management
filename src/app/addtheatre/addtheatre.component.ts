@@ -1,14 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Theatre } from "../theatre";
 import { theatreService } from "../theatre.service";
 import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-addtheatre",
   templateUrl: "./addtheatre.component.html",
   styleUrls: ["./addtheatre.component.css"],
 })
-export class addtheatreComponent {
+export class addtheatreComponent implements OnInit {
+  @ViewChild("#frm")
+  form: NgForm;
   /*********************************************************************
    *  Instance of Theatre for manupulation
    **********************************************************************/
@@ -29,6 +32,7 @@ export class addtheatreComponent {
 
   constructor(private theatreService: theatreService, private route: Router) {}
 
+  ngOnInit(): void {}
   /********************************************************************************
    * Method: addtheatre
    * params:
@@ -44,18 +48,19 @@ export class addtheatreComponent {
       (data) => {
         this.theatre = data;
 
-        console.log(this.theatre.theatreName);
+        console.log(this.theatre);
         this.info = data;
         this.errorInfo = undefined;
-        this.theatreService.loadTheatres().subscribe((data) => {
-          console.log(data);
-          this.route.navigateByUrl("/view");
-        });
+        // this.theatreService.loadTheatres().subscribe((data) => {
+        //   console.log(data);
+
+        //     });
       },
       (error) => {
         this.info = undefined;
         this.errorInfo = error.error;
       }
     );
+    this.route.navigateByUrl("/view");
   }
 }

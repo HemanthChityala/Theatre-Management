@@ -7,11 +7,13 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  title = "Welcome to Theatre Managment!";
+  title = "WELCOME TO ONLINE MOVIE TICKET BOOKING SYSTEM";
 
-  constructor(private route: Router) {}
+  submitted: boolean = false;
+
+  constructor(private router: Router) {}
   public sorting: string = "Ascending";
   ngOnInit(): void {
-    this.route.navigateByUrl("/view");
+    this.router.navigate(["/view"]);
   }
 }

@@ -2,14 +2,12 @@ import { Injectable, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Theatre } from "./theatre";
 import { Observable } from "rxjs";
-import { stringify } from "querystring";
 
 @Injectable({
   providedIn: "root",
 })
 export class theatreService {
   private theatres: Theatre[] = [];
-  private baseUrl = "http://localhost:8085/theatre/";
   //flag:boolean=false;
   constructor(private http: HttpClient) {}
 
@@ -23,7 +21,7 @@ export class theatreService {
    * Author: Hemanth Reddy
    ************************************************************************/
   loadTheatres(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/listalltheatres`);
+    return this.http.get("http://localhost:8085/theatre/listalltheatres");
   }
   /*********************************************************************
    * Method: setTheatres
@@ -59,10 +57,13 @@ export class theatreService {
    * Created Date: 26 APR 2020
    * Author: Hemanth Reddy
    ************************************************************************/
-  deleteTheatres(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete/${id}`, {
-      responseType: "text",
-    });
+  deleteTheatres(theatreId: number): Observable<any> {
+    return this.http.delete(
+      "http://localhost:8085/theatre/delete/" + theatreId,
+      {
+        responseType: "text",
+      }
+    );
   }
   /*********************************************************************
    * Method: insertTheatre
@@ -74,9 +75,13 @@ export class theatreService {
    * Author: Hemanth Reddy
    ************************************************************************/
   insertTheatres(theatre: Theatre): Observable<any> {
-    return this.http.post(`${this.baseUrl}/theatredetails`, theatre, {
-      responseType: "text",
-    });
+    return this.http.post(
+      "http://localhost:8085/theatre/theatredetails",
+      theatre,
+      {
+        responseType: "text",
+      }
+    );
   }
   /*********************************************************************
    * Method: updateTheatres

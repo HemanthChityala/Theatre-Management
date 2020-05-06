@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { addtheatreComponent } from "./addtheatre/addtheatre.component";
 import { ViewtheatreComponent } from "./viewtheatre/viewtheatre.component";
 import { HttpClientModule } from "@angular/common/http";
-
 @NgModule({
   declarations: [AppComponent, addtheatreComponent, ViewtheatreComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
